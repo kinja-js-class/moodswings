@@ -62,11 +62,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
-    <firebase-collection
-      location="https://amber-fire-5100.firebaseio.com/"
-      data={{mood}}>
-    </firebase-collection>
-    <mood-element mood="{{mood[0].value}}"></mood-element>
+	 <firebase-document
+				location="https://amber-fire-5100.firebaseio.com/proba/"
+				data={{data}}>
+			</firebase-document>
+	<mood-element mood="{{data.mood}}"></mood-element>
 
   </template>
 
