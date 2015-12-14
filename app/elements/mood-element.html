@@ -5,6 +5,7 @@
 	<template>
 
 		<new-mood-element on-add-mood="addMoodToFirebase"></new-mood-element>
+		<paper-toggle-button checked={{shouldLocate}}>location</paper-toggle-button>
 	</template>
 	<script>
 		Polymer({
@@ -14,16 +15,20 @@
 			},
 			addMoodToFirebase: function (e) {
 				var that = this;
-				navigator.geolocation.getCurrentPosition(locationSuccess);
-				function locationSuccess (position) {
-					moodPush([position.coords.latitude, position.coords.longitude]);
-				};
+				console.log(this.shouldLocate)
+				if (this.shouldLocate) {
+					navigator.geolocation.getCurrentPosition(function (position) {
+						moodPush([position.coords.latitude, position.coords.longitude]);
+					})
+				} else {
+					moodPush();
+				}
 				function moodPush (location) {
 					console.log(location);
 					that.push('moods', {
 						value: e.detail.value,
 						date: String(new Date()),
-						location: location
+						location: location ? location : false
 					});
 				}
 			}
