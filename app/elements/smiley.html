@@ -2,7 +2,7 @@
 
 <dom-module id="mood-smiley">
 	<template>
-		<p>{{value}}</p>
+		<p><img width="200px" src="images/moods/{{calcSmile(value)}}.png"/></p>
 	</template>
 
 	<script>
@@ -10,6 +10,12 @@
 		is: 'mood-smiley',
 		properties: {
 			value: Number,
+		},
+		calcSmile: function (value) {
+			return value < -50 ? 'veryunhappy' :
+				value >= -50 && value < 0 ? 'unhappy' :
+				value >= 0 && value < 50 ? 'neutral' :
+				'happy';
 		}
 	});
 	</script>
