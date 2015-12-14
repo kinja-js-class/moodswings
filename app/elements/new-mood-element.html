@@ -10,14 +10,18 @@
 	<script>
 	Polymer({
 		is: 'new-mood-element',
+		listeners: {
+			'reset-mood': 'resetMood'
+		},
 		properties: {
 			mood: {
 				notify: true
 			}
 		},
 		addMood: function () {
-
 			this.fire('add-mood', {value: this.mood});
+		},
+		resetMood: function () {
 			this.mood = 0;
 		}
 	});

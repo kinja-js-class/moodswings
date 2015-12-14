@@ -3,7 +3,6 @@
 
 <dom-module id="mood-element">
 	<template>
-
 		<new-mood-element on-add-mood="addMoodToFirebase"></new-mood-element>
 		<paper-toggle-button checked={{shouldLocate}}>location</paper-toggle-button>
 	</template>
@@ -24,12 +23,13 @@
 					moodPush();
 				}
 				function moodPush (location) {
-					console.log(location);
+					var newMoodElement = Polymer.dom(that.root).querySelector('new-mood-element');
 					that.push('moods', {
 						value: e.detail.value,
 						date: String(new Date()),
 						location: location ? location : false
 					});
+					newMoodElement.fire('reset-mood');
 				}
 			}
 		});
