@@ -1,0 +1,19 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="mood-list">
+	<template>
+		<template is="dom-repeat" items="[[moods]]" as="mood">
+			<h4>[[mood.date]]</h4>
+			<span><paper-slider value=[[mood.value]] disabled></paper-slider>
+		</template>
+
+	</template>
+	<script>
+		Polymer({
+			is: 'mood-list',
+			properties: {
+				moods: Array
+			},
+		});
+	</script>
+</dom-module>
