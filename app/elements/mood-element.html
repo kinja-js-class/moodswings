@@ -13,10 +13,19 @@
 				moods: Array
 			},
 			addMoodToFirebase: function (e) {
-				this.push('moods', {
-					value: e.detail.value,
-					date: String(new Date())
-				});
+				var that = this;
+				navigator.geolocation.getCurrentPosition(locationSuccess);
+				function locationSuccess (position) {
+					moodPush([position.coords.latitude, position.coords.longitude]);
+				};
+				function moodPush (location) {
+					console.log(location);
+					that.push('moods', {
+						value: e.detail.value,
+						date: String(new Date()),
+						location: location
+					});
+				}
 			}
 		});
 	</script>
