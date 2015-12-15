@@ -1,9 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="new-mood-element.html">
+<link rel="import" href="mood-with-smiley.html">
 
 <dom-module id="mood-element">
 	<template>
-		<new-mood-element on-add-mood="addMoodToFirebase"></new-mood-element>
+		<mood-with-smiley on-add-mood="addMoodToFirebase"></mood-with-smiley>
 		<paper-toggle-button checked={{shouldLocate}}>location</paper-toggle-button>
 	</template>
 	<script>
