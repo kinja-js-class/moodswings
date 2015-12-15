@@ -4,7 +4,7 @@
 	<template>
 		<template is="dom-repeat" items="[[moods]]" as="mood">
 			<h4>[[mood.date]]</h4>
-			<span><paper-slider value=[[mood.value]] disabled></paper-slider>
+			<span><paper-slider min="-100" max="100" value="[[mood.value]]" disabled></paper-slider>
 			<span>[[mood.location]]</span>
 		</template>
 
