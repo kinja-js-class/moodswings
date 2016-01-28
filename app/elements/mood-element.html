@@ -5,6 +5,7 @@
 	<template>
 		<mood-with-smiley on-add-mood="addMoodToFirebase"></mood-with-smiley>
 		<paper-toggle-button checked={{shouldLocate}}>location</paper-toggle-button>
+		<paper-button raised on-tap="addMoodToFirebase">save mood</paper-button>
 	</template>
 	<script>
 		Polymer({
@@ -14,7 +15,7 @@
 			},
 			addMoodToFirebase: function (e) {
 				var that = this;
-				console.log(this.shouldLocate)
+
 				if (this.shouldLocate) {
 					navigator.geolocation.getCurrentPosition(function (position) {
 						moodPush([position.coords.latitude, position.coords.longitude]);
@@ -23,9 +24,9 @@
 					moodPush();
 				}
 				function moodPush (location) {
-					var newMoodElement = Polymer.dom(that.root).querySelector('new-mood-element');
+					var newMoodElement = Polymer.dom(that.root).querySelector('mood-with-smiley');
 					that.push('moods', {
-						value: e.detail.value,
+						value: newMoodElement.mood,
 						date: String(new Date()),
 						location: location ? location : false
 					});
